@@ -1,41 +1,44 @@
 import java.util.Scanner;
 
-
 public class CalculatorFunction {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the first number : ");
-        int num1 = sc.nextInt();
-        System.out.print("Enter the Second Number : ");
-        int num2 = sc.nextInt();
-        System.out.print("Enter the Operation : ");
-        char op = sc.next().trim().charAt(0); // Extra space from the operator removed
+        int ans = 0;
 
-        if(op == '+' || op == '-' || op == '*' || op == '/'){ // operator must be in 4 of them
-            if(op == '+'){
-                System.out.println(num1+num2);
-                return;                             // Here return means that program will not proceed further
-            }
-            if(op == '-'){
-                System.out.println(num1-num2);
-                return;
-            }
-            if(op == '*'){
-                System.out.println(num1*num2);
-                return;
-            }
-            if(op == '/'){
-                if(num2!=0){
-                    System.out.println(num1/num2);
-                    return;
+        while (true) {                  // This will work continuously until user wants to end the program
+            System.out.print("Enter the operator : ");          // asking for the operator
+            char op = sc.next().trim().charAt(0);
+            if (op == '+' || op == '-' || op == '*' || op == '/') {
+                System.out.print("Enter the First Number : ");
+                int num1 = sc.nextInt();
+                System.out.print("Enter the Second Number : ");
+                int num2 = sc.nextInt();
+
+                if (op == '+') {
+                    ans = num1 + num2;
                 }
-                else{
-                    System.out.println("Invalid value");
-                    return;
+                if (op == '-') {
+                    ans = num1 - num2;
                 }
+                if (op == '*') {
+                    ans = num1 * num2;
+                }
+                if (op == '/') {
+                    if (num2 == 0) {
+                        System.out.println("Invalid");
+                        continue;
+                    } else {
+                        ans = num1 / num2;
+                    }
+                }
+
+            } else if (op == 'x' || op == 'X') {            //program will end when entering x
+                break;
+
+            } else {
+                System.out.println("Invalid Operator");
             }
-        }else{
-            System.out.println("Invalid Operation");  // prints invalid if operator is not one of 4
+            System.out.println(ans);
         }
     }
 }
